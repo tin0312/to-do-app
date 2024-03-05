@@ -4,21 +4,24 @@ import Form from 'react-bootstrap/Form';
 export default function ToDoItem({ task }) {
   const [checked, setChecked] = useState(false);
 
-  const toggleCheck = () => setChecked(!checked);
+  const toggleCheck = () => {
+    setChecked((prevChecked) => !prevChecked); // Toggles the checked state
+  };
 
   const labelStyle = {
-    textDecoration: checked ? 'line-through' : 'none'
+    textDecoration: checked ? 'line-through' : 'none',
+    color: checked ? 'grey' : 'black',
   };
 
   return (
-    <Form.Check
-      type="radio"
-      label={<span style={labelStyle}>{task}</span>}
-      id={task}
-      name="task"
-      onChange={toggleCheck}
-    />
+    <Form>
+      <Form.Check
+        type="checkbox"
+        label={<span style={labelStyle}>{task}</span>}
+        id={task}
+        name="task"
+        onChange={toggleCheck}
+      />
+    </Form>
   );
 }
-
-

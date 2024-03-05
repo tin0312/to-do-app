@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 16px;
+}
+.checkbox-round .form-check-input {
+    border-radius: 50%;
+  }
+/* Make the checkbox input circle */
+
+.checkbox-round .form-check-input {
+    border-radius: 50%;
+  }
