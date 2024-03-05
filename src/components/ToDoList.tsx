@@ -15,7 +15,12 @@ export default function ToDoList() {
       }
     }
   }
-
+ let taskList = tasks.map((task, index) => (
+          <ToDoItem 
+          key={index} 
+          task={task} 
+          />
+        ))
   return (
     <div>
       <Form className="">
@@ -24,9 +29,7 @@ export default function ToDoList() {
         </Form.Group>
       </Form>
       <section>
-        {tasks.map((task, index) => (
-          <ToDoItem key={index} task={task} />
-        ))}
+       {taskList}
       </section>
     </div>
   );
