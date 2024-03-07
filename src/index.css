@@ -10,8 +10,12 @@ body{
 .checkbox-round .form-check-input {
     border-radius: 50%;
   }
-/* Make the checkbox input circle */
-
-.checkbox-round .form-check-input {
-    border-radius: 50%;
-  }
+.task-input-form{
+    background-image: url("../public/images/bg-desktop-light.jpg");
+    height:40vh;
+    background-repeat: none;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+}

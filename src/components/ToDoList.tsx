@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ToDoItem from './ToDoItem';
-import Form from 'react-bootstrap/Form';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 export default function ToDoList() {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -8,29 +8,30 @@ export default function ToDoList() {
   function saveTask(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      let newTask = e.currentTarget.value;
+      const newTask = e.currentTarget.value;
       if (newTask !== '') {
         setTasks((prevTasks) => [...prevTasks, newTask]);
         e.currentTarget.value = '';
       }
     }
   }
- let taskList = tasks.map((task, index) => (
-          <ToDoItem 
-          key={index} 
-          task={task} 
-          />
-        ))
+  const taskList = tasks.map((task, index) => <ToDoItem key={index} task={task} />);
   return (
-    <div>
-      <Form className="">
-        <Form.Group className="mb-3">
-          <Form.Control type="text" onKeyDown={saveTask} placeholder="Create a task..." />
-        </Form.Group>
-      </Form>
-      <section>
-       {taskList}
-      </section>
-    </div>
+    <Container>
+      <Row className="task-input-form d-flex justify-content-center">
+        <Col>
+          <Form.Group>
+            <Form.Label>TO DO</Form.Label>
+            <Form>
+              <Form.Control type="text" onKeyDown={saveTask} placeholder="Create a task..." />
+            </Form>
+          </Form.Group>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>{taskList}</Col>
+      </Row>
+    </Container>
   );
 }

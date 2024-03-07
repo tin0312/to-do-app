@@ -5,12 +5,12 @@ export default function ToDoItem({ task }) {
   const [checked, setChecked] = useState(false);
 
   const toggleCheck = () => {
-    setChecked((prevChecked) => !prevChecked); // Toggles the checked state
+    setChecked((prevChecked) => !prevChecked);
   };
 
   const labelStyle = {
     textDecoration: checked ? 'line-through' : 'none',
-    color: checked ? 'grey' : 'black',
+    color: checked ? 'grey' : 'black'
   };
 
   return (
