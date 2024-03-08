@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 interface ToDoItemProps {
   task: string;
@@ -9,7 +9,7 @@ const ToDoItem: React.FC<ToDoItemProps> = ({ task }) => {
   const [checked, setChecked] = useState(false);
 
   const toggleCheck = () => {
-    setChecked((prevChecked) => !prevChecked);
+    setChecked((prevChecked: boolean) => !prevChecked);
   };
 
   const labelStyle = {
