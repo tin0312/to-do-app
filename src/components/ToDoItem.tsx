@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 
-export default function ToDoItem({ task }) {
+interface ToDoItemProps {
+  task: string;
+}
+
+const ToDoItem: React.FC<ToDoItemProps> = ({ task }) => {
   const [checked, setChecked] = useState(false);
 
   const toggleCheck = () => {
@@ -26,4 +30,6 @@ export default function ToDoItem({ task }) {
       </Form>
     </li>
   );
-}
+};
+
+export default ToDoItem;

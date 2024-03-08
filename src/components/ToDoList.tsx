@@ -29,14 +29,15 @@ export default function ToDoList() {
               <Form.Control type="text" onKeyDown={saveTask} placeholder="Create a new todo..." />
             </Form.Group>
           </Form>
-          
         </Col>
         {/* This row position relativeky to the the input fornm row */}
-        <Row>
-          <Col md={4} className="task-list position-absolute top-100 start-50 translate-middle">
-            <ul>{taskList}</ul>
-          </Col>
-        </Row>
+        {tasks .length > 0 && (
+          <Row>
+            <Col md={4} className="task-list position-absolute top-100 start-50 translate-middle">
+              <ul>{taskList}</ul>
+            </Col>
+          </Row>
+        )}
       </Row>
     </Container>
   );
