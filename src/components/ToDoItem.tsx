@@ -14,14 +14,16 @@ export default function ToDoItem({ task }) {
   };
 
   return (
-    <Form>
-      <Form.Check
-        type="checkbox"
-        label={<span style={labelStyle}>{task}</span>}
-        id={task}
-        name="task"
-        onChange={toggleCheck}
-      />
-    </Form>
+    <li>
+      <Form>
+        <Form.Check
+          type="checkbox"
+          label={<span style={{ ...labelStyle, marginLeft: '2rem' }}>{task}</span>}
+          id={task}
+          name="task"
+          onChange={toggleCheck}
+        />
+      </Form>
+    </li>
   );
 }
