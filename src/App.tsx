@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ToDoForm from './components/ToDoForm';
-import ToDoList from './components/ToDoForm';
+import ToDoList from './components/ToDoList';
 
 function App() {
   const exampleTasks = [
@@ -30,7 +30,7 @@ function App() {
     },
     {
       id: nanoid(),
-      content: "Complete Todo App on Frontend Mentor",
+      content: "Complete Todo App on Frotend Mentor",
       completed: false
     }
   ] 
@@ -41,7 +41,8 @@ function App() {
         <Header />
       </header>
       <main>
-        <ToDoForm tasks= {tasks} setTasks = {setTasks}/>
+        <ToDoForm tasks= {tasks} setTasks = {setTasks}/> 
+        <ToDoList tasks={tasks} setTasks={setTasks} />
       </main>
       <footer>
         <Footer />

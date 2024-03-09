@@ -2,10 +2,14 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
 interface ToDoItemProps {
-  task: string;
+  task: {
+    id: number;
+    content: string;
+    completed: boolean;
+  };
 }
 
-export default function ToDoTask: React.FC<ToDoItemProps> ({ task }) => {
+const ToDoTask: React.FC<ToDoItemProps> = ({ task }) => {
   const [checked, setChecked] = useState(false);
 
   const toggleCheck = () => {
@@ -14,7 +18,8 @@ export default function ToDoTask: React.FC<ToDoItemProps> ({ task }) => {
 
   const labelStyle = {
     textDecoration: checked ? 'line-through' : 'none',
-    color: checked ? 'grey' : 'black'
+    color: checked ? 'grey' : 'black',
+    marginLeft: '2rem'
   };
 
   return (
@@ -22,8 +27,8 @@ export default function ToDoTask: React.FC<ToDoItemProps> ({ task }) => {
       <Form>
         <Form.Check
           type="checkbox"
-          label={<span style={{ ...labelStyle, marginLeft: '2rem' }}>{task}</span>}
-          id={task}
+          label={<span style={labelStyle}>{task.content}</span>}
+          id={task.id.toString()}
           name="task"
           onChange={toggleCheck}
         />
@@ -32,4 +37,4 @@ export default function ToDoTask: React.FC<ToDoItemProps> ({ task }) => {
   );
 };
 
-export default ToDoItem;
+export default ToDoTask;

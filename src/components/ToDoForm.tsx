@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import ToDoTask from "./ToDoTask"
-import FilterTask from "./FilterTask"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
 interface Task{
-  id: string,
+  id: number,
   content: string,
   completed: boolean
 }
@@ -33,7 +31,7 @@ export default function ToDoList({tasks, setTasks} : ToDoListProps) {
           content: taskInput,
           completed: false
         };
-        setTasks([...tasks, newTask]);
+        setTasks([newTask,...tasks]);
         setTaskInput("");
       }
     }
@@ -45,7 +43,6 @@ export default function ToDoList({tasks, setTasks} : ToDoListProps) {
         <Col md={4} className="d-flex form-column p-0 flex-column align-items-center">
           <Form className="w-100 p-0">
             <Form.Group>
-              {/* <Form.Label className="todo-label text-light fw-bolder mb-5">TO DO</Form.Label> */}
               <Form.Control
                 type="text"
                 onChange={handleChange}
