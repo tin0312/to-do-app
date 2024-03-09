@@ -5,7 +5,7 @@ interface ToDoItemProps {
   task: string;
 }
 
-const ToDoItem: React.FC<ToDoItemProps> = ({ task }) => {
+export default function ToDoTask: React.FC<ToDoItemProps> ({ task }) => {
   const [checked, setChecked] = useState(false);
 
   const toggleCheck = () => {
