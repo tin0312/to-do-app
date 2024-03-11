@@ -39,29 +39,28 @@ function App() {
   ];
   const [tasks, setTasks] = useState(exampleTasks);
   return (
-    <Container fluid className="position-relative d-flex flex-column align-items-center">
-      <Row>
-        <Col md={12} className="app-background">
-          <Row>
+    <Container fluid>
+      <Row className="app-background pt-5">
+        <Col>
+          <Row className="d-flex justify-content-center">
             <Col md={4}>
               <Header />
             </Col>
           </Row>
-          <Row>
+          <Row className="d-flex justify-content-center pt-5">
             <Col md={4}>
               <ToDoForm tasks={tasks} setTasks={setTasks} />
             </Col>
           </Row>
         </Col>
       </Row>
-
-      <Row>
+      <Row className="w-100 mx-0 d-flex justify-content-center list position-absolute top-20 start-50 translate-middle">
         <Col md={4}>
           <ToDoList tasks={tasks} setTasks={setTasks} />
         </Col>
       </Row>
-      <Row>
-        <Col md={4}>
+      <Row className="w-100 d-flex justify-content-center position-absolute bottom-0">
+        <Col md={4} className="list d-flex d-flex justify-content-center">
           <Footer />
         </Col>
       </Row>

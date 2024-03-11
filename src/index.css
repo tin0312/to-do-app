@@ -10,9 +10,12 @@ body {
 }
 .app-background {
   background-image: url('../public/images/bg-desktop-light.jpg');
-  height: 40vh;
+  height: 35vh;
   background-repeat: no-repeat;
   background-size: cover;
+}
+h1 {
+  letter-spacing: 0.5rem;
 }
 .todo-label {
   letter-spacing: 0.5rem;
