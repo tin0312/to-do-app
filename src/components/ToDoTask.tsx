@@ -10,10 +10,10 @@ interface ToDoItemProps {
 }
 
 const ToDoTask: React.FC<ToDoItemProps> = ({ task }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(task.completed);
 
   const toggleCheck = () => {
-    setChecked((prevChecked: boolean) => !prevChecked);
+    setChecked((prevStatus: boolean) => !prevStatus);
   };
 
   const labelStyle = {
@@ -31,6 +31,7 @@ const ToDoTask: React.FC<ToDoItemProps> = ({ task }) => {
           id={task.id.toString()}
           name="task"
           onChange={toggleCheck}
+          checked={checked}
         />
       </Form>
     </li>
