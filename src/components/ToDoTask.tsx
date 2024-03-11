@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 interface ToDoItemProps {
   task: {
-    id: number;
+    id: string;
     content: string;
     completed: boolean;
   };

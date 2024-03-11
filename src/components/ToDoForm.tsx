@@ -28,7 +28,6 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
           content: taskInput,
           completed: false
         };
-        console.log(typeof newTask.id);
         setTasks([newTask, ...tasks]);
         setTaskInput('');
       }

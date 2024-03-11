@@ -1,6 +1,6 @@
 import './index.css';
 import { nanoid } from 'nanoid';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -56,7 +56,7 @@ function App() {
       </Row>
       <Row className="w-100 mx-0 d-flex justify-content-center list position-absolute top-20 start-50 translate-middle">
         <Col md={4}>
-          <ToDoList tasks={tasks} setTasks={setTasks} />
+          <ToDoList tasks={tasks} />
         </Col>
       </Row>
       <Row className="w-100 d-flex justify-content-center position-absolute bottom-0">

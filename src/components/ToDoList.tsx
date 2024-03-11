@@ -1,9 +1,18 @@
-import React from 'react';
 import ToDoTask from './ToDoTask';
 import FilterTask from './FilterTask';
 
-export default function ToDoList({ tasks, setTasks }) {
-  const task = tasks.map((task) => <ToDoTask key={task.id} task={task} setTasks={setTasks} />);
+interface Task {
+  id: string;
+  content: string;
+  completed: boolean;
+}
+
+interface ToDoListProps {
+  tasks: Task[];
+}
+
+export default function ToDoList({ tasks }: ToDoListProps) {
+  const task = tasks.map((task) => <ToDoTask key={task.id} task={task} />);
   return (
     <div className="task-list">
       {/* A list of task */}

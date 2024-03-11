@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function FilterTask() {
   return (
     <div className="filter-tasks d-flex justify-content-center gap-2">
