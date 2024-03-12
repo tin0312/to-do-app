@@ -1,25 +1,41 @@
+import { useState, useEffect } from 'react';
 import ToDoTask from './ToDoTask';
 import FilterTask from './FilterTask';
 
-interface Task {
-  id: string;
-  content: string;
-  completed: boolean;
-}
-
 interface ToDoListProps {
-  tasks: Task[];
+  tasks: Array<{ id: string; content: string; completed: boolean }>;
+  setTasks: React.Dispatch<
+    React.SetStateAction<Array<{ id: string; content: string; completed: boolean }>>
+  >;
 }
 
-export default function ToDoList({ tasks }: ToDoListProps) {
-  const task = tasks.map((task) => <ToDoTask key={task.id} task={task} />);
+export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
+  const [taskLeft, setTaskLeft] = useState(0);
+
+  useEffect(() => {
+    const taskLeft = tasks.filter((task) => !task.completed).length;
+    setTaskLeft(taskLeft);
+  }, [tasks]);
+
+  const task = tasks.map((task) => (
+    <ToDoTask key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
+  ));
   return (
-    <div className="task-list">
+    <div className="task-list fs-6">
       {/* A list of task */}
-      <section className="pb-5">{task}</section>
-      <section>
+      <section>{task}</section>
+      <section className="filter-container d-flex justify-content-between align-items-center p-4">
+        {/* Tasks left */}
+        <p className="pb-0 mb-0">{taskLeft} tasks left</p>
         {/* Buttons to filter tasks by status */}
-        <FilterTask />
+        <section className="filter-desktop">
+          <FilterTask />
+        </section>
+        {/* Filter section for mobile */}
+        <section className="filter-mobile">
+          <FilterTask />
+        </section>
+        <a>Clear completed</a>
       </section>
     </div>
   );

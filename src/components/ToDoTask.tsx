@@ -7,13 +7,21 @@ interface ToDoItemProps {
     content: string;
     completed: boolean;
   };
+  tasks: Array<{ id: string; content: string; completed: boolean }>;
+  setTasks: React.Dispatch<
+    React.SetStateAction<Array<{ id: string; content: string; completed: boolean }>>
+  >;
 }
 
-const ToDoTask: React.FC<ToDoItemProps> = ({ task }) => {
+const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks }) => {
   const [checked, setChecked] = useState(task.completed);
 
   const toggleCheck = () => {
-    setChecked((prevStatus: boolean) => !prevStatus);
+    const updatedTasks = tasks.map((t) =>
+      t.id === task.id ? { ...t, completed: !t.completed } : t
+    );
+    setTasks(updatedTasks);
+    setChecked(!checked);
   };
 
   const labelStyle = {
@@ -23,7 +31,7 @@ const ToDoTask: React.FC<ToDoItemProps> = ({ task }) => {
   };
 
   return (
-    <li>
+    <li className="p-4">
       <Form>
         <Form.Check
           type="checkbox"

@@ -7,6 +7,7 @@
 body {
   font-size: 16px;
   font-family: 'Josefin Sans', sans-serif;
+  background-color: #fafafa;
 }
 .app-background {
   background-image: url('../public/images/bg-desktop-light.jpg');
@@ -35,10 +36,42 @@ li {
 }
 .task-list {
   background-color: #fff;
-  padding: 2rem;
   border-radius: 0.25rem;
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  color: #494c6b;
 }
 .list-row {
   top: -10vh;
+}
+li {
+  border-bottom: 1px solid #e3e4f1;
+}
+.filter-container {
+  color: #9495a5 !important;
+}
+a {
+  text-decoration: none !important;
+  color: #9495a5 !important;
+}
+.filter-mobile {
+  display: none;
+}
+@media screen and (max-width: 576px) {
+  .filter-desktop {
+    display: none;
+  }
+  .filter-mobile {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    border-radius: 0.25rem;
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    padding: 0.5rem;
+  }
+  .list-row {
+    height: 65vh;
+  }
 }
