@@ -39,28 +39,33 @@ function App() {
   ];
   const [tasks, setTasks] = useState(exampleTasks);
   return (
-    <Container fluid>
-      <Row className="app-background pt-5">
-        <Col>
+    <Container fluid className="p-0">
+      <Row className="d-flex flex-column align-items-center app-background pt-5">
+        <Col xs={10} md={12}>
           <Row className="d-flex justify-content-center">
-            <Col md={4}>
+            <Col sm={4}>
               <Header />
             </Col>
           </Row>
-          <Row className="d-flex justify-content-center pt-5">
-            <Col md={4}>
+          <Row className="form-input d-flex justify-content-center pt-5">
+            <Col sm={4} className="p-0">
               <ToDoForm tasks={tasks} setTasks={setTasks} />
             </Col>
           </Row>
         </Col>
       </Row>
-      <Row className="w-100 mx-0 d-flex justify-content-center list position-absolute top-20 start-50 translate-middle">
-        <Col md={4}>
-          <ToDoList tasks={tasks} />
+      {/* The list of task*/}
+      <Row className="list-row position-relative d-flex justify-content-center">
+        <Col xs={10} md={12} className="d-flex justify-content-center p-0">
+          <Row className="w-100 d-flex justify-content-center">
+            <Col sm={4} className="list-position p-0">
+              <ToDoList tasks={tasks} />
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Row className="w-100 d-flex justify-content-center position-absolute bottom-0">
-        <Col md={4} className="list d-flex d-flex justify-content-center">
+        <Col md={4} className="d-flex d-flex justify-content-center">
           <Footer />
         </Col>
       </Row>
