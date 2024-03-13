@@ -39,7 +39,7 @@ function App() {
   ];
   const [tasks, setTasks] = useState(exampleTasks);
   return (
-    <Container fluid className="p-0">
+    <Container fluid className="main-wrapper position-relative p-0">
       <Row className="d-flex flex-column align-items-center app-background pt-5">
         <Col xs={10} md={12}>
           <Row className="d-flex justify-content-center">

@@ -21,7 +21,7 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
     <ToDoTask key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
   ));
   return (
-    <div className="task-list fs-6">
+    <div className="task-list position-relative fs-6">
       {/* A list of task */}
       <section>{task}</section>
       <section className="filter-container d-flex justify-content-between align-items-center p-4">
@@ -32,11 +32,11 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
           <FilterTask />
         </section>
         {/* Filter section for mobile */}
-        <section className="filter-mobile">
-          <FilterTask />
-        </section>
         <a>Clear completed</a>
       </section>
+      <section className="filter-mobile mt-5">
+          <FilterTask />
+        </section>
     </div>
   );
 }

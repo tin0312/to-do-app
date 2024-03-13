@@ -9,9 +9,12 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   background-color: #fafafa;
 }
+.main-wrapper{
+  height: 100vh;
+}
 .app-background {
   background-image: url('../public/images/bg-desktop-light.jpg');
-  height: 35vh;
+  height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -41,7 +44,7 @@ li {
   color: #494c6b;
 }
 .list-row {
-  top: -10vh;
+  top: -40px;
 }
 li {
   border-bottom: 1px solid #e3e4f1;
@@ -53,25 +56,31 @@ a {
   text-decoration: none !important;
   color: #9495a5 !important;
 }
-.filter-mobile {
+footer{
+  color: #9495A5;
+  font-size: 0.8rem;
+}
+.filter-mobile{
   display: none;
 }
 @media screen and (max-width: 576px) {
+  .list-row {
+    top: -50px;
+  }
   .filter-desktop {
     display: none;
   }
   .filter-mobile {
     display: block;
     position: absolute;
-    bottom: 0;
-    background-color: #fff;
+    bottom: -5rem;
+    background-color: #FFF;
     transform: translate(-50%, -50%);
     left: 50%;
     border-radius: 0.25rem;
-    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
-    padding: 0.5rem;
-  }
-  .list-row {
-    height: 65vh;
+    padding: 10px;
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.50);
+    width: 100%;
   }
 }
+
