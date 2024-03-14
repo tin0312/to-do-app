@@ -1,6 +1,6 @@
 import './index.css';
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -38,6 +38,23 @@ function App() {
     }
   ];
   const [tasks, setTasks] = useState(exampleTasks);
+  const [filterStatus, setFilterStatus] = useState('all');
+  const [filterTasks, setFilterTasks] = useState(tasks);
+
+  useEffect(() => {
+    switch (filterStatus) {
+      case 'active':
+        setFilterTasks(tasks.filter((task) => !task.completed));
+        break;
+      case 'completed':
+        setFilterTasks(tasks.filter((task) => task.completed));
+        break;
+      default:
+        setFilterTasks(tasks);
+        break;
+    }
+  }, [tasks, filterStatus]);
+
   return (
     <Container fluid className="main-wrapper position-relative p-0">
       <Row className="d-flex flex-column align-items-center app-background pt-5">
@@ -59,7 +76,13 @@ function App() {
         <Col xs={10} md={12} className="d-flex justify-content-center p-0">
           <Row className="w-100 d-flex justify-content-center">
             <Col sm={4} className="p-0">
-              <ToDoList setTasks={setTasks} tasks={tasks} />
+              <ToDoList
+                setTasks={setTasks}
+                tasks={tasks}
+                filterStatus={filterStatus}
+                setFilterStatus={setFilterStatus}
+                filterTasks={filterTasks}
+              />
             </Col>
           </Row>
         </Col>

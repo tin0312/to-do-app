@@ -12,9 +12,18 @@ interface Task {
 interface ToDoListProps {
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  filterStatus: string;
+  setFilterStatus: React.Dispatch<React.SetStateAction<string>>;
+  filterTasks: Task[];
 }
 
-const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
+const ToDoList: React.FC<ToDoListProps> = ({
+  tasks,
+  setTasks,
+  filterStatus,
+  setFilterStatus,
+  filterTasks
+}) => {
   const [taskLeft, setTaskLeft] = useState(0);
 
   useEffect(() => {
@@ -31,22 +40,21 @@ const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
 
     setTasks(newTasks);
   };
-
   function clearCompletedTask() {
-    const completedTask = tasks.filter((task) => !task.completed);
-    setTasks(completedTask);
+    const incompletedTask = tasks.filter((task) => !task.completed);
+    setTasks(incompletedTask);
   }
 
   return (
     <div className="task-list position-relative fs-6 pt-4">
-      {tasks.length === 0 ? (
+      {filterTasks.length === 0 ? (
         <p className="text-center">No tasks available</p>
       ) : (
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="droppable">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {tasks.map((task, index) => (
+                {filterTasks.map((task, index) => (
                   <ToDoTask
                     key={task.id}
                     task={task}
@@ -63,14 +71,18 @@ const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
       )}
 
       <section className="filter-container d-flex justify-content-between align-items-center p-4">
-        <p className="pb-0 mb-0">{taskLeft} tasks left</p>
+        <p className="pb-0 mb-0">
+          <span className="fw-bold">{taskLeft}</span> tasks left
+        </p>
         <section className="filter-desktop">
-          <FilterTask />
+          <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} />
         </section>
-        <a onClick={clearCompletedTask}>Clear completed</a>
+        <a className="clear-btn" onClick={clearCompletedTask}>
+          Clear completed
+        </a>
       </section>
       <section className="filter-mobile mt-5">
-        <FilterTask />
+        <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} />
       </section>
     </div>
   );

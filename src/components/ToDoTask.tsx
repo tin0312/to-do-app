@@ -32,24 +32,20 @@ const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks, index }) => 
     marginLeft: '2rem'
   };
 
-   // Feedback for dragging task
-   const dragTaskStyle = (
-    isDragging: boolean,
-    draggableStyle: React.CSSProperties
-  ) => ({
-    background: isDragging ? '#9495A5' : 'transparent', 
+  // Feedback for dragging task
+  const dragTaskStyle = (isDragging: boolean, draggableStyle: React.CSSProperties) => ({
+    background: isDragging ? '#9495A5' : 'transparent',
     ...draggableStyle
   });
   return (
     <Draggable draggableId={task.id} index={index} key={task.id}>
-      {(provided,snapshot) => (
+      {(provided, snapshot) => (
         <li
           className="p-4"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          style={dragTaskStyle(snapshot.isDragging, provided.draggableProps.style ?? {})}
-          >
+          style={dragTaskStyle(snapshot.isDragging, provided.draggableProps.style ?? {})}>
           <Form>
             <Form.Check
               type="checkbox"
