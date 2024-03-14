@@ -18,7 +18,7 @@ const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
   const [taskLeft, setTaskLeft] = useState(0);
 
   useEffect(() => {
-    const taskLeft = tasks.filter((task) => !task.completed).length;
+    const taskLeft = tasks.filter(task => !task.completed).length;
     setTaskLeft(taskLeft);
   }, [tasks]);
 
@@ -31,21 +31,17 @@ const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
 
     setTasks(newTasks);
   };
-
+  
   return (
     <div className="task-list position-relative fs-6">
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable">
           {(provided) => (
-            <ul ref={provided.innerRef} {...provided.droppableProps}>
+            <ul  ref={provided.innerRef}
+            {...provided.droppableProps}
+            >
               {tasks.map((task, index) => (
-                <ToDoTask
-                  key={task.id}
-                  task={task}
-                  index={index}
-                  tasks={tasks}
-                  setTasks={setTasks}
-                />
+                <ToDoTask key={task.id} task={task} index={index} tasks={tasks} setTasks={setTasks} />
               ))}
               {provided.placeholder}
             </ul>
