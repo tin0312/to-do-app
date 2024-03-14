@@ -18,7 +18,7 @@ const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
   const [taskLeft, setTaskLeft] = useState(0);
 
   useEffect(() => {
-    const taskLeft = tasks.filter(task => !task.completed).length;
+    const taskLeft = tasks.filter((task) => !task.completed).length;
     setTaskLeft(taskLeft);
   }, [tasks]);
 
@@ -31,29 +31,43 @@ const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
 
     setTasks(newTasks);
   };
-  
+
+  function clearCompletedTask() {
+    const completedTask = tasks.filter((task) => !task.completed);
+    setTasks(completedTask);
+  }
+
   return (
-    <div className="task-list position-relative fs-6">
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided) => (
-            <ul  ref={provided.innerRef}
-            {...provided.droppableProps}
-            >
-              {tasks.map((task, index) => (
-                <ToDoTask key={task.id} task={task} index={index} tasks={tasks} setTasks={setTasks} />
-              ))}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
+    <div className="task-list position-relative fs-6 pt-4">
+      {tasks.length === 0 ? (
+        <p className="text-center">No tasks available</p>
+      ) : (
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided) => (
+              <ul ref={provided.innerRef} {...provided.droppableProps}>
+                {tasks.map((task, index) => (
+                  <ToDoTask
+                    key={task.id}
+                    task={task}
+                    index={index}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                  />
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+      )}
+
       <section className="filter-container d-flex justify-content-between align-items-center p-4">
         <p className="pb-0 mb-0">{taskLeft} tasks left</p>
         <section className="filter-desktop">
           <FilterTask />
         </section>
-        <a>Clear completed</a>
+        <a onClick={clearCompletedTask}>Clear completed</a>
       </section>
       <section className="filter-mobile mt-5">
         <FilterTask />

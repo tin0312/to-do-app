@@ -56,6 +56,12 @@ a {
   text-decoration: none !important;
   color: #9495a5 !important;
 }
+.task-list p{
+  color: #9495a5;
+}
+.task-list a{
+  cursor: pointer;
+}
 footer{
   color: #9495A5;
   font-size: 0.8rem;
