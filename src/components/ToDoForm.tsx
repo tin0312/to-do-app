@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Form from 'react-bootstrap/Form';
 
@@ -19,29 +19,28 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setTaskInput(e.currentTarget.value);
   }
-  function createTask(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (taskInput) {
-        const newTask = {
-          id: nanoid(),
-          content: taskInput,
-          completed: false
-        };
-        setTasks([newTask, ...tasks]);
-        setTaskInput('');
-      }
+
+  function createTask(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault(); // Prevent form submission
+    if (taskInput) {
+      const newTask = {
+        id: nanoid(),
+        content: taskInput.trim(),
+        completed: false
+      };
+      setTasks([newTask, ...tasks]);
+      setTaskInput('');
     }
   }
 
   return (
     <div>
-      <Form className="w-100 p-0">
+      <Form className="w-100 p-0" onSubmit={createTask}>
         <Form.Group>
           <Form.Control
             type="text"
+            value={taskInput}
             onChange={handleChange}
-            onKeyDown={createTask}
             placeholder="Create a new todo..."
           />
         </Form.Group>
@@ -49,3 +48,4 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
     </div>
   );
 }
+

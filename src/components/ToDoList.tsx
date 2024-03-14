@@ -1,15 +1,20 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToDoTask from './ToDoTask';
 import FilterTask from './FilterTask';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-interface ToDoListProps {
-  tasks: Array<{ id: string; content: string; completed: boolean }>;
-  setTasks: React.Dispatch<
-    React.SetStateAction<Array<{ id: string; content: string; completed: boolean }>>
-  >;
+interface Task {
+  id: string;
+  content: string;
+  completed: boolean;
 }
 
-export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
+interface ToDoListProps {
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+
+const ToDoList: React.FC<ToDoListProps> = ({ tasks, setTasks }) => {
   const [taskLeft, setTaskLeft] = useState(0);
 
   useEffect(() => {
@@ -17,26 +22,48 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
     setTaskLeft(taskLeft);
   }, [tasks]);
 
-  const task = tasks.map((task) => (
-    <ToDoTask key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
-  ));
+  const handleDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const newTasks = Array.from(tasks);
+    const [reorderedTask] = newTasks.splice(result.source.index, 1);
+    newTasks.splice(result.destination.index, 0, reorderedTask);
+
+    setTasks(newTasks);
+  };
+
   return (
     <div className="task-list position-relative fs-6">
-      {/* A list of task */}
-      <section>{task}</section>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided) => (
+            <ul ref={provided.innerRef} {...provided.droppableProps}>
+              {tasks.map((task, index) => (
+                <ToDoTask
+                  key={task.id}
+                  task={task}
+                  index={index}
+                  tasks={tasks}
+                  setTasks={setTasks}
+                />
+              ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
       <section className="filter-container d-flex justify-content-between align-items-center p-4">
-        {/* Tasks left */}
         <p className="pb-0 mb-0">{taskLeft} tasks left</p>
-        {/* Buttons to filter tasks by status */}
         <section className="filter-desktop">
           <FilterTask />
         </section>
-        {/* Filter section for mobile */}
         <a>Clear completed</a>
       </section>
       <section className="filter-mobile mt-5">
-          <FilterTask />
-        </section>
+        <FilterTask />
+      </section>
     </div>
   );
-}
+};
+
+export default ToDoList;

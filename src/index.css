@@ -59,6 +59,7 @@ a {
 footer{
   color: #9495A5;
   font-size: 0.8rem;
+  padding-top: 200px;
 }
 .filter-mobile{
   display: none;

@@ -58,13 +58,13 @@ function App() {
       <Row className="list-row position-relative d-flex justify-content-center">
         <Col xs={10} md={12} className="d-flex justify-content-center p-0">
           <Row className="w-100 d-flex justify-content-center">
-            <Col sm={4} className="list-position p-0">
+            <Col sm={4} className="p-0">
               <ToDoList setTasks={setTasks} tasks={tasks} />
             </Col>
           </Row>
         </Col>
       </Row>
-      <Row className="w-100 d-flex justify-content-center position-absolute bottom-0">
+      <Row className="w-100 d-flex justify-content-center position-absolute bottom-0 mx-0">
         <Col md={4} className="d-flex d-flex justify-content-center">
           <Footer />
         </Col>

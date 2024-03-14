@@ -1,5 +1,6 @@
-import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { Draggable } from 'react-beautiful-dnd';
 
 interface ToDoItemProps {
   task: {
@@ -11,9 +12,10 @@ interface ToDoItemProps {
   setTasks: React.Dispatch<
     React.SetStateAction<Array<{ id: string; content: string; completed: boolean }>>
   >;
+  index: number;
 }
 
-const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks }) => {
+const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks, index }) => {
   const [checked, setChecked] = useState(task.completed);
 
   const toggleCheck = () => {
@@ -31,18 +33,26 @@ const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks }) => {
   };
 
   return (
-    <li className="p-4">
-      <Form>
-        <Form.Check
-          type="checkbox"
-          label={<span style={labelStyle}>{task.content}</span>}
-          id={task.id.toString()}
-          name="task"
-          onChange={toggleCheck}
-          checked={checked}
-        />
-      </Form>
-    </li>
+    <Draggable draggableId={task.id} index={index} key={task.id}>
+      {(provided) => (
+        <li
+          className="p-4"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}>
+          <Form>
+            <Form.Check
+              type="checkbox"
+              label={<span style={labelStyle}>{task.content}</span>}
+              id={task.id.toString()}
+              name="task"
+              onChange={toggleCheck}
+              checked={checked}
+            />
+          </Form>
+        </li>
+      )}
+    </Draggable>
   );
 };
 
