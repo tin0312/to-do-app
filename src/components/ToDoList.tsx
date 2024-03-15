@@ -15,6 +15,7 @@ interface ToDoListProps {
   filterStatus: string;
   setFilterStatus: React.Dispatch<React.SetStateAction<string>>;
   filterTasks: Task[];
+  appMode: string
 }
 
 const ToDoList: React.FC<ToDoListProps> = ({
@@ -22,7 +23,8 @@ const ToDoList: React.FC<ToDoListProps> = ({
   setTasks,
   filterStatus,
   setFilterStatus,
-  filterTasks
+  filterTasks,
+  appMode
 }) => {
   const [taskLeft, setTaskLeft] = useState(0);
 
@@ -46,7 +48,7 @@ const ToDoList: React.FC<ToDoListProps> = ({
   }
 
   return (
-    <div className="task-list position-relative fs-6 pt-4">
+    <div className={`task-list ${appMode}-list position-relative fs-6 pt-4`}>
       {filterTasks.length === 0 ? (
         <p className="text-center">No tasks available</p>
       ) : (
@@ -61,6 +63,7 @@ const ToDoList: React.FC<ToDoListProps> = ({
                     index={index}
                     tasks={tasks}
                     setTasks={setTasks}
+                    appMode={appMode}
                   />
                 ))}
                 {provided.placeholder}
@@ -75,14 +78,14 @@ const ToDoList: React.FC<ToDoListProps> = ({
           <span className="fw-bold">{taskLeft}</span> tasks left
         </p>
         <section className="filter-desktop">
-          <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} />
+          <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} appMode={appMode}/>
         </section>
         <a className="clear-btn" onClick={clearCompletedTask}>
           Clear completed
         </a>
       </section>
-      <section className="filter-mobile mt-5">
-        <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} />
+      <section className={`${appMode}-filter-mobile filter-mobile mt-5`}>
+        <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} appMode={appMode}/>
       </section>
     </div>
   );

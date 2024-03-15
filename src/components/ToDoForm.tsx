@@ -11,9 +11,10 @@ interface Task {
 interface ToDoListProps {
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  appMode: string;
 }
 
-export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
+export default function ToDoList({ tasks, setTasks, appMode }: ToDoListProps) {
   const [taskInput, setTaskInput] = useState('');
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -38,6 +39,7 @@ export default function ToDoList({ tasks, setTasks }: ToDoListProps) {
       <Form className="w-100 p-0" onSubmit={createTask}>
         <Form.Group>
           <Form.Control
+            className={`${appMode}-form`}
             type="text"
             value={taskInput}
             onChange={handleChange}

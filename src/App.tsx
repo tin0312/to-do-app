@@ -40,6 +40,12 @@ function App() {
   const [tasks, setTasks] = useState(exampleTasks);
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterTasks, setFilterTasks] = useState(tasks);
+  const [appMode, setAppMode] = useState('light');
+
+  function toggleTheme(){
+    setAppMode( appMode === "light" ? "dark" : "light");
+    console.log(appMode);
+  }
 
   useEffect(() => {
     switch (filterStatus) {
@@ -56,17 +62,23 @@ function App() {
   }, [tasks, filterStatus]);
 
   return (
-    <Container fluid className="main-wrapper position-relative p-0">
-      <Row className="d-flex flex-column align-items-center app-background pt-5">
+    <Container fluid className={`${appMode}-wrapper position-relative p-0`}>
+      <Row className={`d-flex flex-column align-items-center ${appMode}-header-background pt-5`}>
         <Col xs={10} md={12}>
           <Row className="d-flex justify-content-center">
             <Col sm={4}>
-              <Header />
+              <Header 
+                  toggleTheme={toggleTheme}
+                  appMode={appMode}
+              />
             </Col>
           </Row>
           <Row className="form-input d-flex justify-content-center pt-5">
             <Col sm={4} className="p-0">
-              <ToDoForm tasks={tasks} setTasks={setTasks} />
+              <ToDoForm 
+              appMode={appMode}
+              tasks={tasks} 
+              setTasks={setTasks} />
             </Col>
           </Row>
         </Col>
@@ -82,6 +94,7 @@ function App() {
                 filterStatus={filterStatus}
                 setFilterStatus={setFilterStatus}
                 filterTasks={filterTasks}
+                appMode={appMode}
               />
             </Col>
           </Row>
