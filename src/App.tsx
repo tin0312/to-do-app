@@ -42,8 +42,8 @@ function App() {
   const [filterTasks, setFilterTasks] = useState(tasks);
   const [appMode, setAppMode] = useState('light');
 
-  function toggleTheme(){
-    setAppMode( appMode === "light" ? "dark" : "light");
+  function toggleTheme() {
+    setAppMode(appMode === 'light' ? 'dark' : 'light');
     console.log(appMode);
   }
 
@@ -63,22 +63,18 @@ function App() {
 
   return (
     <Container fluid className={`${appMode}-wrapper position-relative p-0`}>
-      <Row className={`d-flex flex-column align-items-center ${appMode}-header-background pt-5`}>
+      <Row
+        className={`d-flex flex-column align-items-center ${appMode}-header-background header-background pt-5`}
+      >
         <Col xs={10} md={12}>
           <Row className="d-flex justify-content-center">
             <Col sm={4}>
-              <Header 
-                  toggleTheme={toggleTheme}
-                  appMode={appMode}
-              />
+              <Header toggleTheme={toggleTheme} appMode={appMode} />
             </Col>
           </Row>
           <Row className="form-input d-flex justify-content-center pt-5">
             <Col sm={4} className="p-0">
-              <ToDoForm 
-              appMode={appMode}
-              tasks={tasks} 
-              setTasks={setTasks} />
+              <ToDoForm appMode={appMode} tasks={tasks} setTasks={setTasks} />
             </Col>
           </Row>
         </Col>

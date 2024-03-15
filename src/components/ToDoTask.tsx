@@ -13,10 +13,10 @@ interface ToDoItemProps {
     React.SetStateAction<Array<{ id: string; content: string; completed: boolean }>>
   >;
   index: number;
-  appMode: string
+  appMode: string;
 }
 
-const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks, index,appMode }) => {
+const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks, index, appMode }) => {
   const [checked, setChecked] = useState(task.completed);
 
   const toggleCheck = () => {
@@ -46,11 +46,16 @@ const ToDoTask: React.FC<ToDoItemProps> = ({ task, tasks, setTasks, index,appMod
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          style={dragTaskStyle(snapshot.isDragging, provided.draggableProps.style ?? {})}>
-          <Form >
+          style={dragTaskStyle(snapshot.isDragging, provided.draggableProps.style ?? {})}
+        >
+          <Form>
             <Form.Check
               type="checkbox"
-              label={<span  className={`${appMode}-task`} style={labelStyle}>{task.content}</span>}
+              label={
+                <span className={`${appMode}-task`} style={labelStyle}>
+                  {task.content}
+                </span>
+              }
               id={task.id.toString()}
               name="task"
               onChange={toggleCheck}

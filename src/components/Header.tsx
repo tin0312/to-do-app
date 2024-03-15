@@ -15,7 +15,8 @@ export default function Header({ toggleTheme, appMode }: HeaderProps) {
             width="26"
             height="26"
             viewBox="0 0 26 26"
-            fill="none">
+            fill="none"
+          >
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -30,7 +31,8 @@ export default function Header({ toggleTheme, appMode }: HeaderProps) {
             width="26"
             height="26"
             viewBox="0 0 26 26"
-            fill="none">
+            fill="none"
+          >
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
