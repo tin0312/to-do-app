@@ -78,14 +78,14 @@ const ToDoList: React.FC<ToDoListProps> = ({
           <span className="fw-bold">{taskLeft}</span> tasks left
         </p>
         <section className="filter-desktop">
-          <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} appMode={appMode}/>
+          <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus}/>
         </section>
         <a className="clear-btn" onClick={clearCompletedTask}>
           Clear completed
         </a>
       </section>
       <section className={`${appMode}-filter-mobile filter-mobile mt-5`}>
-        <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus} appMode={appMode}/>
+        <FilterTask setFilterStatus={setFilterStatus} filterStatus={filterStatus}/>
       </section>
     </div>
   );
