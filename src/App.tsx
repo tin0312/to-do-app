@@ -62,7 +62,7 @@ function App() {
   }, [tasks, filterStatus]);
 
   return (
-    <Container fluid className={`${appMode}-wrapper position-relative p-0`}>
+    <Container fluid className={`${appMode}-wrapper position-relative p-0 vh-100`}>
       <Row
         className={`d-flex flex-column align-items-center ${appMode}-header-background header-background pt-5`}
       >
@@ -96,7 +96,7 @@ function App() {
           </Row>
         </Col>
       </Row>
-      <Row className="w-100 d-flex justify-content-center position-absolute bottom-0 mx-0">
+      <Row className="w-100 position-absolute bottom-0 d-flex justify-content-center mx-0">
         <Col md={4} className="d-flex d-flex justify-content-center">
           <Footer />
         </Col>
